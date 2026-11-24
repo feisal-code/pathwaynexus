@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as MentorsRouteImport } from './routes/mentors'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as PassportRouteImport } from './routes/passport'
+import { Route as PathwayRouteImport } from './routes/pathway'
+import { Route as ProfileRouteImport } from './routes/profile'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorsRoute = MentorsRouteImport.update({
+  id: '/mentors',
+  path: '/mentors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PassportRoute = PassportRouteImport.update({
+  id: '/passport',
+  path: '/passport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathwayRoute = PathwayRouteImport.update({
+  id: '/pathway',
+  path: '/pathway',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/mentors': typeof MentorsRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/partners': typeof PartnersRoute
+  '/passport': typeof PassportRoute
+  '/pathway': typeof PathwayRoute
+  '/profile': typeof ProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/mentors': typeof MentorsRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/partners': typeof PartnersRoute
+  '/passport': typeof PassportRoute
+  '/pathway': typeof PathwayRoute
+  '/profile': typeof ProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/mentors': typeof MentorsRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/partners': typeof PartnersRoute
+  '/passport': typeof PassportRoute
+  '/pathway': typeof PathwayRoute
+  '/profile': typeof ProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/how-it-works'
+    | '/mentors'
+    | '/opportunities'
+    | '/partners'
+    | '/passport'
+    | '/pathway'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/how-it-works'
+    | '/mentors'
+    | '/opportunities'
+    | '/partners'
+    | '/passport'
+    | '/pathway'
+    | '/profile'
+  id:
+    | '__root__'
+    | '/'
+    | '/how-it-works'
+    | '/mentors'
+    | '/opportunities'
+    | '/partners'
+    | '/passport'
+    | '/pathway'
+    | '/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  MentorsRoute: typeof MentorsRoute
+  OpportunitiesRoute: typeof OpportunitiesRoute
+  PartnersRoute: typeof PartnersRoute
+  PassportRoute: typeof PassportRoute
+  PathwayRoute: typeof PathwayRoute
+  ProfileRoute: typeof ProfileRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentors': {
+      id: '/mentors'
+      path: '/mentors'
+      fullPath: '/mentors'
+      preLoaderRoute: typeof MentorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/passport': {
+      id: '/passport'
+      path: '/passport'
+      fullPath: '/passport'
+      preLoaderRoute: typeof PassportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pathway': {
+      id: '/pathway'
+      path: '/pathway'
+      fullPath: '/pathway'
+      preLoaderRoute: typeof PathwayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  MentorsRoute: MentorsRoute,
+  OpportunitiesRoute: OpportunitiesRoute,
+  PartnersRoute: PartnersRoute,
+  PassportRoute: PassportRoute,
+  PathwayRoute: PathwayRoute,
+  ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

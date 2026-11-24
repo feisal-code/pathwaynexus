@@ -10,6 +10,11 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { Toaster } from "@/components/ui/sonner";
+import { PathwayProvider } from "@/lib/pathway/store";
+
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -75,22 +80,27 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    // Replace these placeholders with the app's name and description when first building the app.
-    // Each content route, / included, must still set its own head(). Never add og:image or
-    // twitter:image here: every page without its own would inherit the root's preview image.
+    // Each content route sets its own head(). Never add og:image or twitter:image here.
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Pathway Nexus — From proven skills to meaningful opportunity" },
+      {
+        name: "description",
+        content: "AI-assisted career pathways that help skilled displaced people turn experience into opportunity.",
+      },
+      { property: "og:title", content: "Pathway Nexus" },
+      { property: "og:description", content: "From proven skills to meaningful opportunity." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -123,8 +133,23 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <PathwayProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+        >
+          Skip to content
+        </a>
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <div className="flex-1">
+            <Outlet />
+          </div>
+          <SiteFooter />
+        </div>
+        <Toaster position="bottom-right" />
+      </PathwayProvider>
     </QueryClientProvider>
   );
 }
