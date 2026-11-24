@@ -27,7 +27,7 @@ export function buildPathway(
 ): { steps: PathwayStep[]; percent: number; done: number; total: number } {
   const steps = PATHWAY_STAGES.map((stage) => {
     const fromAi = analysis.pathway.find((p) => p.stage === stage)?.actions ?? [];
-    const actions = fromAi.slice(0, 3).map((label, i) => {
+    const actions: PathwayStep["actions"] = fromAi.slice(0, 3).map((label, i) => {
       const key = `${stage}:${i}`;
       return { key, label, done: Boolean(completed[key]) };
     });
