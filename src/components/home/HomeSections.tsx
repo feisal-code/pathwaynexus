@@ -17,14 +17,37 @@ function Heading({ eyebrow, title, intro }: { eyebrow: string; title: string; in
   );
 }
 
+// Paste a Loom or YouTube link here to show the walkthrough video.
+export const DEMO_VIDEO_URL = "";
+
+function toEmbedUrl(url: string): string | null {
+  const u = url.trim();
+  if (!u) return null;
+  const yt = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
+  if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
+  const loom = u.match(/loom\.com\/(?:share|embed)\/([\w-]+)/);
+  if (loom) return `https://www.loom.com/embed/${loom[1]}`;
+  return null;
+}
+
 export function DemoVideo() {
+  const embed = toEmbedUrl(DEMO_VIDEO_URL);
   return (
-    <section className={cn(wrap, "pt-14")} aria-label="Demo video">
-      <div className="paper-grid flex aspect-[21/9] min-h-48 flex-col items-center justify-center rounded-3xl border border-dashed bg-card text-center">
-        <PlayCircle className="size-12 text-primary" aria-hidden="true" />
-        <p className="mt-3 font-display text-2xl">Watch demo</p>
-        <p className="text-sm text-muted-foreground">Demo video — coming soon</p>
-      </div>
+    <section className={cn(wrap, "pt-14")} aria-label="Watch demo">
+      {embed ? (
+        <div className="overflow-hidden rounded-3xl border bg-card shadow-card">
+          <div className="aspect-video">
+            <iframe src={embed} title="Watch the 60-second walkthrough" className="size-full" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
+          </div>
+          <p className="px-6 py-4 font-display text-xl">Watch the 60-second walkthrough</p>
+        </div>
+      ) : (
+        <div className="paper-grid flex aspect-[21/9] min-h-48 flex-col items-center justify-center rounded-3xl border border-dashed bg-card text-center">
+          <PlayCircle className="size-12 text-primary" aria-hidden="true" />
+          <p className="mt-3 font-display text-2xl">Watch demo</p>
+          <p className="text-sm text-muted-foreground">Watch the 60-second walkthrough</p>
+        </div>
+      )}
     </section>
   );
 }
@@ -178,7 +201,13 @@ const ROADMAP = [
   { when: "Later", what: "Expand to a second city and open the partner API" },
 ];
 
-const TEAM = [1, 2, 3, 4].map((n) => ({ name: `[Your name ${n}]`, role: "[Role]", bio: "[One-line bio]" }));
+// Example team — edit names, roles and bios here.
+const TEAM = [
+  { name: "Feisal Yusuf", role: "Product & Research", bio: "Leads user research with displaced professionals and shapes the product roadmap." },
+  { name: "Amal Hassan", role: "Partnerships", bio: "Builds relationships with employers, NGOs and refugee-led organisations." },
+  { name: "Daniel Otieno", role: "Engineering", bio: "Builds the platform and the AI-assisted skills analysis." },
+  { name: "Leila Mansour", role: "Mentorship & Community", bio: "Recruits mentors and supports candidates through their pathway." },
+];
 
 export function ImpactRoadmapTeam() {
   return (

@@ -80,6 +80,11 @@ function Index() {
                   Build My Pathway <ArrowRight />
                 </Link>
               </Button>
+              <Button asChild size="lg">
+                <a href="#journey" onClick={(e) => { e.preventDefault(); document.getElementById("journey")?.scrollIntoView({ behavior: "smooth" }); }}>
+                  Try the demo journey
+                </a>
+              </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/partners">Explore for Partners</Link>
               </Button>
@@ -160,7 +165,7 @@ function Index() {
       </section>
 
       {/* Journey */}
-      <section className="border-y bg-secondary/50">
+      <section id="journey" className="scroll-mt-20 border-y bg-secondary/50">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
           <div className="max-w-2xl">
             <p className="eyebrow text-primary">Not another job board</p>
