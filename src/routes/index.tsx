@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Compass, Fingerprint, Handshake, Lock, Route as RouteIcon, ScanSearch, ShieldCheck, Sparkles, Target, UserRound, Users } from "lucide-react";
 
 import { MatchScore, SkillChip } from "@/components/pathway/common";
+import { DemoTour } from "@/components/home/DemoTour";
+import { DemoVideo, ImpactRoadmapTeam, LocalExperience, MentorNetwork, SdgAlignment, TheProblem } from "@/components/home/HomeSections";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -81,6 +83,7 @@ function Index() {
               <Button asChild size="lg" variant="outline">
                 <Link to="/partners">Explore for Partners</Link>
               </Button>
+              <DemoTour />
             </div>
             <p className="flex items-center gap-2 text-sm text-muted-foreground">
               <Lock className="size-4" aria-hidden="true" />
@@ -135,6 +138,9 @@ function Index() {
         </div>
       </section>
 
+      <DemoVideo />
+      <TheProblem />
+
       {/* Benefits */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="grid gap-5 md:grid-cols-3">
@@ -185,14 +191,18 @@ function Index() {
         </div>
       </section>
 
+      <MentorNetwork />
+      <LocalExperience />
+      <SdgAlignment />
+
       {/* Partners + trust */}
       <section className="mx-auto grid max-w-7xl gap-6 px-4 pt-20 sm:px-6 lg:grid-cols-2">
         <div className="rounded-3xl surface-ink p-9">
           <Handshake className="size-7 text-accent" aria-hidden="true" />
           <h2 className="mt-5 text-3xl font-medium">For employers, NGOs and partners</h2>
           <p className="mt-3 max-w-md text-ink-muted">
-            Search anonymised talent by skill and field, identify potential candidates and express interest — without
-            exposing personal details.
+            Search anonymised talent by skill, field, language and location, then express interest — without exposing
+            personal details. Partners see skills and fit, never legal status or personal history.
           </p>
           <Button asChild variant="accent" size="lg" className="mt-7">
             <Link to="/partners">Explore for Partners</Link>
@@ -208,6 +218,8 @@ function Index() {
           </ul>
         </div>
       </section>
+
+      <ImpactRoadmapTeam />
     </main>
   );
 }
