@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep video URL parsing in the browser-safe video helper and partner asks in one shared presentation component, so both pages stay consistent without backend dependencies.

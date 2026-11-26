@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
 import { DemoBadge, EmptyState, MatchScore, Notice, Page, PageHeader, SkillChip } from "@/components/pathway/common";
+import { PartnerAsk } from "@/components/home/PartnerAsk";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TALENT_POOL } from "@/lib/pathway/demo-data";
@@ -99,28 +100,28 @@ function PartnersPage() {
         </label>
         <label className="flex flex-col gap-1 text-xs font-semibold">
           Professional field
-          <select className={selectClass} value={field} onChange={(e) => setField(e.target.value)}>
+          <select aria-label="Professional field" className={selectClass} value={field} onChange={(e) => setField(e.target.value)}>
             <option value="all">All fields</option>
             {PROFESSIONAL_FIELDS.map((f) => <option key={f}>{f}</option>)}
           </select>
         </label>
         <label className="flex flex-col gap-1 text-xs font-semibold">
           Work type
-          <select className={selectClass} value={workType} onChange={(e) => setWorkType(e.target.value)}>
+          <select aria-label="Work type" className={selectClass} value={workType} onChange={(e) => setWorkType(e.target.value)}>
             <option value="all">All work types</option>
             {WORK_TYPES.map((w) => <option key={w}>{w}</option>)}
           </select>
         </label>
         <label className="flex flex-col gap-1 text-xs font-semibold">
           Language
-          <select className={selectClass} value={language} onChange={(e) => setLanguage(e.target.value)}>
+          <select aria-label="Language" className={selectClass} value={language} onChange={(e) => setLanguage(e.target.value)}>
             <option value="all">All languages</option>
             {languages.map((l) => <option key={l}>{l}</option>)}
           </select>
         </label>
         <label className="flex flex-col gap-1 text-xs font-semibold">
           Location
-          <select className={selectClass} value={location} onChange={(e) => setLocation(e.target.value)}>
+          <select aria-label="Location" className={selectClass} value={location} onChange={(e) => setLocation(e.target.value)}>
             <option value="all">All locations</option>
             {locations.map((l) => <option key={l}>{l}</option>)}
           </select>
@@ -177,6 +178,8 @@ function PartnersPage() {
           })}
         </div>
       )}
+
+      <PartnerAsk />
 
       <div className="mt-10">
         <Notice>

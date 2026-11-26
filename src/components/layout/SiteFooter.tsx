@@ -10,8 +10,8 @@ export function SiteFooter() {
           <Logo inverted />
           <p className="max-w-sm text-sm text-ink-muted">From proven skills to meaningful opportunity.</p>
           <p className="max-w-md rounded-lg border border-ink-border px-4 py-3 text-xs leading-relaxed text-ink-muted">
-            <span className="font-semibold text-ink-foreground">Prototype notice.</span> All people, organisations and
-            opportunities shown are fictional demo data. AI outputs are assessments and recommendations — they do not
+            <span className="font-semibold text-ink-foreground">Prototype notice.</span> Opportunities, mentors, employers and example talent profiles
+            are fictional demo data; the hackathon team is not. AI outputs are assessments and recommendations — they do not
             verify qualifications or credentials.
           </p>
         </div>

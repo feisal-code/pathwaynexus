@@ -155,11 +155,10 @@ function ProfilePage() {
               <Textarea id="careerGoal" rows={3} value={form.careerGoal} onChange={(e) => set("careerGoal", e.target.value)} placeholder="e.g. Work in NGO finance or grants management" />
             </Field>
             <Field id="preferredWorkType" label="Preferred work type" error={errors.preferredWorkType}>
-              <div role="radiogroup" aria-labelledby="preferredWorkType-label" className="flex flex-wrap gap-2">
+              <div id="preferredWorkType" tabIndex={-1} role="radiogroup" aria-labelledby="preferredWorkType-label" className="flex flex-wrap gap-2">
                 {WORK_TYPES.map((w) => (
                   <button
                     key={w}
-                    id={w === WORK_TYPES[0] ? "preferredWorkType" : undefined}
                     type="button"
                     role="radio"
                     aria-checked={form.preferredWorkType === w}
@@ -215,7 +214,7 @@ function Section({ title, number, children }: { title: string; number: string; c
 function Field({ id, label, hint, error, children }: { id: string; label: string; hint?: string; error?: string | undefined; children: ReactNode }) {
   return (
     <div className="space-y-2">
-      <Label htmlFor={id} id={`${id}-label`} className="text-sm font-semibold">
+      <Label htmlFor={id === "preferredWorkType" ? undefined : id} id={`${id}-label`} className="text-sm font-semibold">
         {label}
       </Label>
       {children}

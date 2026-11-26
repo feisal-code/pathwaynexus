@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Award, BookOpenCheck, Building2, Eye, GraduationCap, HandHeart, Handshake, Landmark, PlayCircle, UserRound, Users, UsersRound } from "lucide-react";
 
-import { MatchScore, SkillChip } from "@/components/pathway/common";
+import { MatchScore } from "@/components/pathway/common";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toEmbedUrl } from "@/lib/pathway/video";
 
 const wrap = "mx-auto max-w-7xl px-4 sm:px-6";
 
@@ -20,16 +21,6 @@ function Heading({ eyebrow, title, intro }: { eyebrow: string; title: string; in
 // Paste a Loom or YouTube link here to show the walkthrough video.
 export const DEMO_VIDEO_URL = "";
 
-function toEmbedUrl(url: string): string | null {
-  const u = url.trim();
-  if (!u) return null;
-  const yt = u.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
-  if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
-  const loom = u.match(/loom\.com\/(?:share|embed)\/([\w-]+)/);
-  if (loom) return `https://www.loom.com/embed/${loom[1]}`;
-  return null;
-}
-
 export function DemoVideo() {
   const embed = toEmbedUrl(DEMO_VIDEO_URL);
   return (
@@ -42,10 +33,12 @@ export function DemoVideo() {
           <p className="px-6 py-4 font-display text-xl">Watch the 60-second walkthrough</p>
         </div>
       ) : (
-        <div className="paper-grid flex aspect-[21/9] min-h-48 flex-col items-center justify-center rounded-3xl border border-dashed bg-card text-center">
+        <div className="paper-grid flex min-h-48 w-full flex-col items-center justify-center rounded-3xl border border-dashed bg-card px-6 py-8 text-center sm:aspect-[21/9]">
           <PlayCircle className="size-12 text-primary" aria-hidden="true" />
-          <p className="mt-3 font-display text-2xl">Watch demo</p>
-          <p className="text-sm text-muted-foreground">Watch the 60-second walkthrough</p>
+          <p className="eyebrow mt-3 text-primary">Watch demo</p>
+          <p className="mt-2 font-display text-2xl">Watch the 60-second walkthrough</p>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">Profile → Skills Passport → Opportunities → Mentors → My Pathway → Progress</p>
+          <Button asChild className="mt-5"><a href="#journey" onClick={(event) => { event.preventDefault(); document.getElementById("journey")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }}>Try the demo journey</a></Button>
         </div>
       )}
     </section>
@@ -189,9 +182,9 @@ export function LocalExperience() {
 }
 
 const STATS = [
-  { value: "~70%", body: "of skilled refugees are unemployed or underemployed in host countries (illustrative)" },
-  { value: "Millions", body: "hold qualifications that are not recognised locally (illustrative)" },
-  { value: "Networks", body: "not qualifications, often decide who gets hired" },
+  { value: "118.2M", body: "People forcibly displaced worldwide at mid-2026", source: "UNHCR Mid-Year Trends 2026", href: "https://www.unhcr.org/about-unhcr/overview/figures-glance" },
+  { value: "45%", body: "Refugees living in countries with unrestricted practical access to formal employment in 2023", source: "UNHCR — 2023 Global Survey on Livelihoods and Economic Inclusion", href: "https://www.unhcr.org/what-we-do/build-better-futures/livelihoods-and-economic-inclusion" },
+  { value: "22 percentage points", body: "Gap between legal labour-market access and practical access to formal employment", source: "UNHCR — 2023 Global Survey on Livelihoods and Economic Inclusion", href: "https://www.unhcr.org/what-we-do/build-better-futures/livelihoods-and-economic-inclusion" },
 ];
 
 const ROADMAP = [
@@ -201,12 +194,12 @@ const ROADMAP = [
   { when: "Later", what: "Expand to a second city and open the partner API" },
 ];
 
-// Example team — edit names, roles and bios here.
+// Hackathon team — edit names, roles and bios here.
 const TEAM = [
-  { name: "Feisal Yusuf", role: "Product & Research", bio: "Leads user research with displaced professionals and shapes the product roadmap." },
-  { name: "Amal Hassan", role: "Partnerships", bio: "Builds relationships with employers, NGOs and refugee-led organisations." },
-  { name: "Daniel Otieno", role: "Engineering", bio: "Builds the platform and the AI-assisted skills analysis." },
-  { name: "Leila Mansour", role: "Mentorship & Community", bio: "Recruits mentors and supports candidates through their pathway." },
+  { name: "Feisal Yusuf", role: "Product & Research", bio: "Product direction and research planning for the prototype." },
+  { name: "Amal Hassan", role: "Partnerships", bio: "Partner outreach planning for employers, NGOs and refugee-led organisations." },
+  { name: "Daniel Otieno", role: "Engineering", bio: "Prototype build and AI-assisted skills analysis." },
+  { name: "Leila Mansour", role: "Mentorship & Community", bio: "Mentor programme design and candidate support planning." },
 ];
 
 export function ImpactRoadmapTeam() {
@@ -217,12 +210,12 @@ export function ImpactRoadmapTeam() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {STATS.map((s) => (
             <article key={s.value} className="rounded-2xl border bg-card p-7">
-              <p className="font-display text-5xl text-primary">{s.value}</p>
+              <p className="font-display text-5xl text-primary">{s.value === "22 percentage points" ? <>22 <span className="block text-2xl">percentage points</span></> : s.value}</p>
               <p className="mt-3 text-muted-foreground">{s.body}</p>
+              <p className="mt-4 text-xs text-muted-foreground">Source: <a href={s.href} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-primary">{s.source}</a></p>
             </article>
           ))}
         </div>
-        <p className="mt-4 text-xs text-muted-foreground">Figures are illustrative for this prototype.</p>
       </section>
 
       <section className={cn(wrap, "pt-20")}>
@@ -240,6 +233,7 @@ export function ImpactRoadmapTeam() {
 
       <section className={cn(wrap, "pt-20")}>
         <Heading eyebrow="People" title="The team" />
+        <p className="mt-3 text-sm text-muted-foreground">Hackathon team</p>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {TEAM.map((m) => (
             <article key={m.name} className="rounded-2xl border border-dashed bg-card p-6">

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Compass, Fingerprint, Handshake, Lock, Route as RouteIcon, ScanSearch, ShieldCheck, Sparkles, Target, UserRound, Users } from "lucide-react";
 
 import { MatchScore, SkillChip } from "@/components/pathway/common";
+import { PartnerAsk } from "@/components/home/PartnerAsk";
 import { DemoTour } from "@/components/home/DemoTour";
 import { DemoVideo, ImpactRoadmapTeam, LocalExperience, MentorNetwork, SdgAlignment, TheProblem } from "@/components/home/HomeSections";
 import { Button } from "@/components/ui/button";
@@ -212,6 +213,7 @@ function Index() {
           <Button asChild variant="accent" size="lg" className="mt-7">
             <Link to="/partners">Explore for Partners</Link>
           </Button>
+          <PartnerAsk />
         </div>
         <div className="rounded-3xl border bg-card p-9">
           <ShieldCheck className="size-7 text-primary" aria-hidden="true" />
